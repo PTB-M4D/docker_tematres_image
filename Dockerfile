@@ -2,7 +2,7 @@ FROM bludoc/php5_apache_mysql5_enabled
 
 LABEL maintainer="Bjoern Ludwig <bjoern.ludwig@ptb.de>"
 
-Run apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y \
       git
 
 # Clone the current version of TemaTres from github.com.
