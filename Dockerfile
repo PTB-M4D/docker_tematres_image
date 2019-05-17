@@ -10,7 +10,7 @@ WORKDIR /var/www/html/
 
 RUN git clone "https://github.com/tematres/TemaTres-Vocabulary-Server.git" .
 
-COPY entrypoint.sh /docker-entrypoint.sh
+COPY docker-entrypoint.sh /docker-entrypoint.sh
 
 VOLUME /var/www/html/
 
