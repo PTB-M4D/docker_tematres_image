@@ -1,19 +1,23 @@
-FROM bludoc/php5_apache_mysql5_enabled
+FROM alpine
 
 LABEL maintainer="Bjoern Ludwig <bjoern.ludwig@ptb.de>"
 
-RUN apt-get update && apt-get install -y \
-      git
+RUN apk update && apk add \
+      curl \
+      unzip
 
 # Clone the current version of TemaTres from github.com.
-WORKDIR /var/www/html/
+WORKDIR /opt/tematres/
 
-RUN git clone "https://github.com/tematres/TemaTres-Vocabulary-Server.git" .
+RUN curl -L https://sourceforge.net/projects/tematres/files/latest/download --output tematres.zip && \
+      unzip tematres.zip && \
+      rm tematres.zip
+
+RUN mv tematres*/* . && \
+      rm -rf tematres*
 
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 
-VOLUME /var/www/html/
-
-EXPOSE 80
+VOLUME /opt/tematres/
 
 ENTRYPOINT ["sh", "/docker-entrypoint.sh"]
