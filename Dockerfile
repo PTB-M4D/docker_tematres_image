@@ -16,4 +16,4 @@ VOLUME /var/www/html/
 
 EXPOSE 80
 
-ENTRYPOINT ["sh", "/entrypoint.sh"]
+ENTRYPOINT ["sh", "/docker-entrypoint.sh"]
