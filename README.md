@@ -21,9 +21,6 @@ Copy [docker-entrypoint.sh](./docker-entrypoint.sh) to the root directory of
 the image to enable the setup process of the database connection on container
 startup.
 
-## Expose port 80
-Expose container port 80 to the host for viewing the application in a browser.
-
 # Environment variables
 During container start there are several mandatory and optional environment
 variables available to connect to an existing database. The following
@@ -40,7 +37,8 @@ This list mentions the default value if not explicitly specified differently.
   can be mysqli,postgres, oci8, mssql, and
   [more](http://phplens.com/adodb/supported.databases.html).
 -   `SERVER = tematres_mysql`: Dirección IP o nombre del servidor - IP Address
-    or qualified name of the database server. Use the container_name in Docker context.
+    or qualified name of the database server. Use the container name in Docker
+    context.
 -   `DBNAME = tematres`: Nombre de la base de datos Database name.
 -   `DBLOGIN = tematres`: Nombre de usuario - login. Use the MySQL username for
     the specified database.

@@ -9,7 +9,8 @@ RUN apk update && apk add \
 # Clone the current version of TemaTres from github.com.
 WORKDIR /opt/tematres/
 
-RUN curl -L https://sourceforge.net/projects/tematres/files/latest/download --output tematres.zip && \
+RUN curl -L https://sourceforge.net/projects/tematres/files/latest/download \
+      --output tematres.zip && \
       unzip tematres.zip && \
       rm tematres.zip
 
