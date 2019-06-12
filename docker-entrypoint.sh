@@ -9,19 +9,18 @@ set -e
 #   https://github.com/tematres/TemaTres-Vocabulary-Server/blob/master/vocab/db.tematres.php
 #
 # Select driver to use
-# Default: MySQLi , can be mysqli,postgres, oci8, mssql, and more:
+# can be mysqli, postgres, oci8, mssql, and more:
 #   http://phplens.com/adodb/supported.databases.html
 # To default value, leave empty eg: $DBCFG["DBdriver"] ="";
 : ${DBDRIVER:=}
-# Dirección IP o nombre del servidor - IP Address of the database server
-# Use the container_name in Docker context,
+# Dirección IP o nombre del servidor - IP Address or qualified name of the
+# database server. Use the container name in Docker context.
 : ${SERVER:=tematres_mysql}
-# Nombre de la base de datos Database name
+# Nombre de la base de datos Database name.
 : ${DBNAME:=tematres}
-#  Nombre de usuario - login
-# Use the MySQL username for the specified database
+# Nombre de usuario - login. Use the MySQL username for the specified database.
 : ${DBLOGIN:=tematres}
-# Prefijo para tablas # Prefix for tables
+# Prefijo para tablas. Prefix for tables.
 : ${DBPREFIX:=vocab_}
 
 # Adapt the installation to local needs by inserting the passed build args. This

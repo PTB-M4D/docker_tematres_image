@@ -34,7 +34,7 @@ the MySQL user to write to the specified database table.
 ### Optional variables
 This list mentions the default value if not explicitly specified differently.
 -   `DBDRIVER = `: Select driver to use
-  can be mysqli,postgres, oci8, mssql, and
+  can be mysqli, postgres, oci8, mssql, and
   [more](http://phplens.com/adodb/supported.databases.html).
 -   `SERVER = tematres_mysql`: Dirección IP o nombre del servidor - IP Address
     or qualified name of the database server. Use the container name in Docker
