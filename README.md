@@ -1,27 +1,31 @@
 # TemaTres Docker image
 
 This repository holds the configuration for a Docker image based on
-*bludoc/php5_apache_mysql5_enabled*, which serves
-***TemaTres Vocabulary Server*** in PHP 5.6 over an Apache webserver and the
-enabled MySQL extension.
+*alpine*, which populates a docker volume with the application
+***TemaTres Vocabulary Server***.
 
 # Build process
 The build process is comprised of few steps.
 
-## Install Git
-First update the package sources and install Git (lines 5-7).
+## Install *curl* and *unzip*
+First update the package sources and install *curl* and *unzip* (lines 5-7).
 
-## Clone the code
-Pull the current version of the application from
-[GitHub.com](https://github.com/tematres/TemaTres-Vocabulary-Server) using `git
-clone` (lines 8-12).
+## Download the application
+Pull the current stable version of the application from
+[sourceforge.net](https://sourceforge.net/projects/tematres/files/latest/download)
+using `curl` (lines 8-15), unzip and delete the downloaded file. Afterwards
+rearrange the folder structure.
 
 ## Copy script to enable application set up
-Copy [entrypoint.sh](./entrypoint.sh) to the root directory of the image to
-enable the setup process of the databse connection on container startup.
+Copy [docker-entrypoint.sh](./docker-entrypoint.sh) to the root directory of
+the image to enable the setup process of the database connection on container
+startup.
 
-## Expose port 80
-Expose container port 80 to the host for viewing the application in a browser.
+## Make sure the data is persistent
+
+To make sure, that the TemaTres files are not overridden by a volume but
+populate a volume as expected, we make `/opt/tematres`' content available to the
+outside world.
 
 # Environment variables
 During container start there are several mandatory and optional environment
@@ -35,11 +39,12 @@ the MySQL user to write to the specified database table.
 
 ### Optional variables
 This list mentions the default value if not explicitly specified differently.
--   `DBDRIVER = mysql`: Select driver to use
-  can be mysqli,postgres, oci8, mssql, and [more
-  ](http://phplens.com/adodb/supported.databases.html).
+-   `DBDRIVER = `: Select driver to use
+  can be mysqli, postgres, oci8, mssql, and
+  [more](http://phplens.com/adodb/supported.databases.html).
 -   `SERVER = tematres_mysql`: Dirección IP o nombre del servidor - IP Address
-    or qualified name of the database server. Use the container_name in Docker context.
+    or qualified name of the database server. Use the container name in Docker
+    context.
 -   `DBNAME = tematres`: Nombre de la base de datos Database name.
 -   `DBLOGIN = tematres`: Nombre de usuario - login. Use the MySQL username for
     the specified database.
