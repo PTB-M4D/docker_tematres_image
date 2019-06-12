@@ -7,19 +7,25 @@ This repository holds the configuration for a Docker image based on
 # Build process
 The build process is comprised of few steps.
 
-## Install Git
-First update the package sources and install curl and unzip (lines 5-7).
+## Install *curl* and *unzip*
+First update the package sources and install *curl* and *unzip* (lines 5-7).
 
 ## Download the application
 Pull the current stable version of the application from
 [sourceforge.net](https://sourceforge.net/projects/tematres/files/latest/download)
 using `curl` (lines 8-15), unzip and delete the downloaded file. Afterwards
-rearrange there folder structure.
+rearrange the folder structure.
 
 ## Copy script to enable application set up
 Copy [docker-entrypoint.sh](./docker-entrypoint.sh) to the root directory of
 the image to enable the setup process of the database connection on container
 startup.
+
+## Make sure the data is persistent
+
+To make sure, that the TemaTres files are not overridden by a volume but
+populate a volume as expected, we make `/opt/tematres`' content available to the
+outside world.
 
 # Environment variables
 During container start there are several mandatory and optional environment
