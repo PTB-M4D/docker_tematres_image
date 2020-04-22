@@ -1,5 +1,8 @@
 # TemaTres Docker image
 
+[![Get your own version badge on microbadger.com](https://images.microbadger.com/badges/version/bludoc/tematres.svg)](https://microbadger.com/images/bludoc/tematres)
+[![Get your own image badge on microbadger.com](https://images.microbadger.com/badges/image/bludoc/tematres.svg)](https://microbadger.com/images/bludoc/tematres)
+
 This repository holds the configuration for a Docker image based on
 *alpine*, which populates a docker volume with the application
 ***TemaTres Vocabulary Server***.
