@@ -1,0 +1,3 @@
+[submodule "php5_apache_mysql5_enabled"]
+	path = php5_apache_mysql5_enabled
+	url = git@github.com:BjoernLudwigPTB/php5_apache_mysql5_enabled.git
