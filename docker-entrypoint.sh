@@ -30,7 +30,7 @@ sed -i \
     -e 's/$DBCFG\["Server"\]      = "localhost";/$DBCFG["Server"]      = "'$SERVER'";/g' \
     -e 's/$DBCFG\["DBName"\]     = "tematres";/$DBCFG["DBName"]     = "'$DBNAME'";/g' \
     -e 's/$DBCFG\["DBLogin"\]    = "root";/$DBCFG["DBLogin"]    = "'$DBLOGIN'";/g' \
-    -e 's/$DBCFG\["DBPass"\] = "";/$DBCFG["DBPass"] = "'$DBPASS'";/g' \
+    -e 's/$DBCFG\["DBPass"\] = "pass";/$DBCFG["DBPass"] = "'$DBPASS'";/g' \
     -e 's/$DBCFG\["DBprefix"\] = "lc_";/$DBCFG["DBprefix"] = "'$DBPREFIX'";/g' \
     -e 's#Etc/UTC#Europe/Berlin#g' \
     vocab/db.tematres.php && \
