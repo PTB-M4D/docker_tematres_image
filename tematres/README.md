@@ -8,15 +8,15 @@ This repository holds the configuration for a Docker image based on
 ***TemaTres Vocabulary Server***.
 
 # Build process
-The build process is comprised of few steps.
+The build process comprises few steps.
 
-## Install *curl* and *unzip*
-First update the package sources and install *curl* and *unzip* (lines 5-7).
+## Install *curl*, *wget* and *unzip*
+First update the package sources and install *curl*, *wget* and *unzip* (line 5).
 
 ## Download the application
-Pull the current stable version of the application from
-[sourceforge.net](https://sourceforge.net/projects/tematres/files/latest/download)
-using `curl` (lines 8-15), unzip and delete the downloaded file. Afterwards
+Pull the current stable version of the application from the latest
+[GitHub.com release](https://github.com/tematres/TemaTres-Vocabulary-Server/releases/latest)
+using `curl` (lines 10-13), unzip and delete the downloaded file. Afterwards
 rearrange the folder structure.
 
 ## Copy script to enable application set up
