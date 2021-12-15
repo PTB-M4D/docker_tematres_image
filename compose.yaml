@@ -19,7 +19,7 @@ services:
   # Populate tematres volume with current stable version of TemaTres files
   # and according settings.
   tematres:
-    image: bludoc/tematres
+    build: ./tematres
     container_name: tematres
     environment:
       DBDRIVER: ${DBDRIVER}
@@ -35,7 +35,7 @@ services:
 
   # Start the php container with MySql extension installed.
   app:
-    image: bludoc/php5.6-fpm_mysql
+    build: ./php5_apache_mysql5_enabled
     container_name: tematres_php5.6-fpm_mysql
     depends_on:
     - tematres
@@ -47,7 +47,7 @@ services:
 
   # Start the custom Nginx webserver.
   nginx:
-    image: bludoc/nginx
+    build: ./nginx
     container_name: tematres_nginx
     ports:
       - ${PORT}:80
