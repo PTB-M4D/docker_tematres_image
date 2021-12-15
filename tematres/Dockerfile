@@ -1,4 +1,4 @@
-FROM alpine
+FROM alpine:3.12
 
 LABEL maintainer="Bjoern Ludwig <bjoern.ludwig@ptb.de>"
 
@@ -9,13 +9,13 @@ WORKDIR /opt/tematres/
 
 RUN TAG_NAME=$(curl -s \
     https://api.github.com/repos/tematres/TemaTres-Vocabulary-Server/releases/latest | \
-    grep 'tag_name' | cut -d '"' -f 4)
-RUN echo "https://codeload.github.com/tematres/TemaTres-Vocabulary-Server/zip/refs/tags/$TAG_NAME" | wget -i -
-RUN unzip $TAG_NAME.zip && \
-      rm $TAG_NAME.zip
+    grep 'tag_name' | cut -d '"' -f 4) && \
+    echo "https://codeload.github.com/tematres/TemaTres-Vocabulary-Server/\
+zip/refs/tags/$TAG_NAME" | \
+    wget -i - && unzip $TAG_NAME && rm $TAG_NAME
 
-RUN mv tematres*/* . && \
-      rm -rf tematres*
+RUN mv TemaTres*/* . && \
+      rm -rf TemaTres*
 
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 
