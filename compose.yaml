@@ -35,8 +35,8 @@ services:
 
   # Start the php container with MySql extension installed.
   app:
-    build: ./php5_apache_mysql5_enabled
-    container_name: tematres_php5.6-fpm_mysql
+    image: php:7.4-apache
+    container_name: tematres_php
     depends_on:
     - tematres
     volumes:
