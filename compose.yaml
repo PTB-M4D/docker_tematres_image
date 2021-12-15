@@ -1,4 +1,3 @@
-version: '3.3'
 services:
 
   # Start a database container and populate a Docker volume with the data.
