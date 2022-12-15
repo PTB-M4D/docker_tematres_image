@@ -1,44 +1,63 @@
-# TemaTres *docker-compose* set up
+# TemaTres Docker image
 
-This repository holds the configuration of the set up process for a fully
-working TemaTres instance using _docker-compose_.
+This repository holds the TemaTres Dockerfile to be used with the `docker-compose` 
+configuration in https://gitlab1.ptb.de/m4d/tematres_docker. There you will find 
+an example configuration and more information about the actual start-up process.
 
-After cloning the repository the file `.env` has to be modified to hold the
-supposed database configuration. The file should be pretty self explanatory. To
-start the application just issue the command
+## About the image itself
 
-```shell
-$ docker-compose up --detach
-[...]
-```
+This image is based on *alpine* and populates a docker volume with the application
+***TemaTres Vocabulary Server***.
 
-## Configuration
+## Build process
 
-The application will be served on <http://localhost:9000> and store its data
-persistently in two docker volumes, one holding the database and one holding the
-application files and configuration.
+The build process comprises few steps.
 
-### Change volume type
+### Install *curl*, *wget* and *unzip*
 
-To change the named volume to a bind volume sharing the files to the host file
-system change the following setting in the `docker-compose.yml`
+First update the package sources and install *curl*, *wget* and *unzip* (line 5).
 
-```yml
-# Start the php container with MySql extension installed.
-app:
-  ...
-  volumes:
-    - tematres:/var/www/html
-  ...
-```
+### Download the application
 
-to something like
+Pull the current stable version of the application from the latest
+[GitHub.com release](https://github.com/tematres/TemaTres-Vocabulary-Server/releases/latest)
+using `curl` (lines 10-13), unzip and delete the downloaded file. Afterwards
+rearrange the folder structure.
 
-```yml
-# Start the php container with MySql extension installed.
-app:
-  ...
-  volumes:
-    - /path/to/your/host/folder:/var/www/html/
-  ...
-```
+### Copy script to enable application set up
+
+Copy [docker-entrypoint.sh](./docker-entrypoint.sh) to the root directory of
+the image to enable the setup process of the database connection on container
+startup.
+
+### Make sure the data is persistent
+
+To make sure, that the TemaTres files are not overridden by a volume but
+populate a volume as expected, we make `/opt/tematres`' content available to the
+outside world.
+
+## Environment variables
+
+During container start there are several mandatory and optional environment
+variables available to connect to an existing database. The following
+descriptions are a slightly enhanced versions of the documentation taken from
+[TemaTres GitHub-Repo](https://github.com/tematres/TemaTres-Vocabulary-Server/blob/master/vocab/db.tematres.php).
+
+### Available environment variables
+
+`DBPASS`: The only mandatory environment variable to set is the password for
+the MySQL user to write to the specified database table.
+
+#### Optional variables
+
+This list mentions the default value if not explicitly specified differently.
+-   `DBDRIVER = `: Select driver to use
+  can be mysqli, postgres, oci8, mssql, and
+  [more](http://phplens.com/adodb/supported.databases.html).
+-   `SERVER = tematres_mysql`: Dirección IP o nombre del servidor - IP Address
+    or qualified name of the database server. Use the container name in Docker
+    context.
+-   `DBNAME = tematres`: Nombre de la base de datos Database name.
+-   `DBLOGIN = tematres`: Nombre de usuario - login. Use the MySQL username for
+    the specified database.
+-   `DBPREFIX = vocab_`: Prefijo para tablas. Prefix for tables.
