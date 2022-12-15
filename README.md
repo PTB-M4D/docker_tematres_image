@@ -1,8 +1,10 @@
 # TemaTres Docker image
 
-This repository holds the TemaTres Dockerfile to be used with the `docker-compose` 
-configuration in https://gitlab1.ptb.de/m4d/tematres_docker. There you will find 
-an example configuration and more information about the actual start-up process.
+This repository holds the [TemaTres
+](https://github.com/tematres/TemaTres-Vocabulary-Server) Dockerfile to be used with 
+the `docker-compose` configuration in https://gitlab1.ptb.de/m4d/tematres_docker. 
+There you will find an example configuration and more information about the actual 
+start-up process.
 
 ## About the image itself
 
